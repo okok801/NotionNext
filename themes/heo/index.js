@@ -1,9 +1,9 @@
 /**
- *   HEO 主题说明
- *  > 主题设计者 [张洪](https://zhheo.com/)
- *  > 主题开发者 [tangly1024](https://github.com/tangly1024)
- *  1. 开启方式 在blog.config.js 将主题配置为 `HEO`
- *  2. 更多说明参考此[文档](https://docs.tangly1024.com/article/notionnext-heo)
+ *   HEO 主題說明
+ *  > 主題設計者 [張洪](https://zhheo.com/)
+ *  > 主題開發者 [tangly1024](https://github.com/tangly1024)
+ *  1. 開啓方式 在blog.config.js 將主題配置爲 `HEO`
+ *  2. 更多說明參考此[文檔](https://docs.tangly1024.com/article/notionnext-heo)
  */
 
 import Comment from '@/components/Comment'
@@ -45,7 +45,7 @@ import { Style } from './style'
 import AISummary from '@/components/AISummary'
 
 /**
- * 基础布局 采用上中下布局，移动端使用顶部侧边导航栏
+ * 基礎布局 采用上中下布局，移動端使用頂部側邊導航欄
  * @param props
  * @returns {JSX.Element}
  * @constructor
@@ -53,16 +53,16 @@ import AISummary from '@/components/AISummary'
 const LayoutBase = props => {
   const { children, slotTop, className } = props
 
-  // 全屏模式下的最大宽度
+  // 全屏模式下的最大寬度
   const { fullWidth, isDarkMode } = useGlobal()
   const router = useRouter()
 
   const headerSlot = (
     <header>
-      {/* 顶部导航 */}
+      {/* 頂部導航 */}
       <Header {...props} />
 
-      {/* 通知横幅 */}
+      {/* 通知橫幅 */}
       {router.route === '/' ? (
         <>
           <NoticeBar />
@@ -73,11 +73,11 @@ const LayoutBase = props => {
     </header>
   )
 
-  // 右侧栏 用户信息+标签列表
+  // 右側欄 用戶信息+標簽列表
   const slotRight =
     router.route === '/404' || fullWidth ? null : <SideRight {...props} />
 
-  const maxWidth = fullWidth ? 'max-w-[96rem] mx-auto' : 'max-w-[86rem]' // 普通最大宽度是86rem和顶部菜单栏对齐，留空则与窗口对齐
+  const maxWidth = fullWidth ? 'max-w-[96rem] mx-auto' : 'max-w-[86rem]' // 普通最大寬度是86rem和頂部菜單欄對齊，留空則與窗口對齊
 
   const HEO_HERO_BODY_REVERSE = siteConfig(
     'HEO_HERO_BODY_REVERSE',
@@ -86,7 +86,7 @@ const LayoutBase = props => {
   )
   const HEO_LOADING_COVER = siteConfig('HEO_LOADING_COVER', true, CONFIG)
 
-  // 加载wow动画
+  // 加載wow動畫
   useEffect(() => {
     loadWowJS()
   }, [])
@@ -97,10 +97,10 @@ const LayoutBase = props => {
       className={`${siteConfig('FONT_STYLE')} bg-[#f7f9fe] dark:bg-[#18171d] h-full min-h-screen flex flex-col scroll-smooth`}>
       <Style />
 
-      {/* 顶部嵌入 导航栏，首页放hero，文章页放文章详情 */}
+      {/* 頂部嵌入 導航欄，首頁放hero，文章頁放文章詳情 */}
       {headerSlot}
 
-      {/* 主区块 */}
+      {/* 主區塊 */}
       <main
         id='wrapper-outer'
         className={`flex-grow w-full ${maxWidth} mx-auto relative md:px-5`}>
@@ -108,7 +108,7 @@ const LayoutBase = props => {
           id='container-inner'
           className={`${HEO_HERO_BODY_REVERSE ? 'flex-row-reverse' : ''} w-full mx-auto lg:flex justify-center relative z-10`}>
           <div className={`w-full h-auto ${className || ''}`}>
-            {/* 主区上部嵌入 */}
+            {/* 主區上部嵌入 */}
             {slotTop}
             {children}
           </div>
@@ -116,13 +116,13 @@ const LayoutBase = props => {
           <div className='lg:px-2'></div>
 
           <div className='hidden xl:block'>
-            {/* 主区快右侧 */}
+            {/* 主區快右側 */}
             {slotRight}
           </div>
         </div>
       </main>
 
-      {/* 页脚 */}
+      {/* 頁脚 */}
       <Footer />
 
       {HEO_LOADING_COVER && <LoadingCover />}
@@ -131,15 +131,15 @@ const LayoutBase = props => {
 }
 
 /**
- * 首页
- * 是一个博客列表，嵌入一个Hero大图
+ * 首頁
+ * 是一個博客列表，嵌入一個Hero大圖
  * @param {*} props
  * @returns
  */
 const LayoutIndex = props => {
   return (
     <div id='post-outer-wrapper' className='px-5 md:px-0'>
-      {/* 文章分类条 */}
+      {/* 文章分類條 */}
       <CategoryBar {...props} />
       {siteConfig('POST_LIST_STYLE') === 'page' ? (
         <BlogPostListPage {...props} />
@@ -158,7 +158,7 @@ const LayoutIndex = props => {
 const LayoutPostList = props => {
   return (
     <div id='post-outer-wrapper' className='px-5  md:px-0'>
-      {/* 文章分类条 */}
+      {/* 文章分類條 */}
       <CategoryBar {...props} />
       {siteConfig('POST_LIST_STYLE') === 'page' ? (
         <BlogPostListPage {...props} />
@@ -180,7 +180,7 @@ const LayoutSearch = props => {
   const currentSearch = keyword || router?.query?.s
 
   useEffect(() => {
-    // 高亮搜索结果
+    // 高亮搜索結果
     if (currentSearch) {
       setTimeout(() => {
         replaceSearchResult({
@@ -214,18 +214,18 @@ const LayoutSearch = props => {
 }
 
 /**
- * 归档
+ * 歸檔
  * @param {*} props
  * @returns
  */
 const LayoutArchive = props => {
   const { archivePosts } = props
 
-  // 归档页顶部显示条，如果是默认归档则不显示。分类详情页显示分类列表，标签详情页显示当前标签
+  // 歸檔頁頂部顯示條，如果是默認歸檔則不顯示。分類詳情頁顯示分類列表，標簽詳情頁顯示當前標簽
 
   return (
     <div className='p-5 rounded-xl border dark:border-gray-600 max-w-6xl w-full bg-white dark:bg-[#1e1e1e]'>
-      {/* 文章分类条 */}
+      {/* 文章分類條 */}
       <CategoryBar {...props} border={false} />
 
       <div className='px-3'>
@@ -242,7 +242,7 @@ const LayoutArchive = props => {
 }
 
 /**
- * 文章详情
+ * 文章詳情
  * @param {*} props
  * @returns
  */
@@ -280,7 +280,7 @@ const LayoutSlug = props => {
             )
             if (!article) {
               router.push('/404').then(() => {
-                console.warn('找不到页面', router.asPath)
+                console.warn('找不到頁面', router.asPath)
               })
             }
           }
@@ -293,17 +293,17 @@ const LayoutSlug = props => {
     <>
       <div
         className={`article h-full w-full ${fullWidth ? '' : 'xl:max-w-5xl'} ${hasCode ? 'xl:w-[73.15vw]' : ''}  bg-white dark:bg-[#18171d] dark:border-gray-600 lg:hover:shadow lg:border rounded-2xl lg:px-2 lg:py-4 `}>
-        {/* 文章锁 */}
+        {/* 文章鎖 */}
         {lock && <PostLock validPassword={validPassword} />}
 
         {!lock && post && (
           <div className='mx-auto md:w-full md:px-5'>
-            {/* 文章主体 */}
+            {/* 文章主體 */}
             <article
               id='article-wrapper'
               itemScope
               itemType='https://schema.org/Movie'>
-              {/* Notion文章主体 */}
+              {/* Notion文章主體 */}
               <section
                 className='wow fadeInUp p-5 justify-center mx-auto'
                 data-wow-delay='.2s'>
@@ -320,23 +320,23 @@ const LayoutSlug = props => {
               <ShareBar post={post} />
               {post?.type === 'Post' && (
                 <div className='px-5'>
-                  {/* 版权 */}
+                  {/* 版權 */}
                   <PostCopyright {...props} />
-                  {/* 文章推荐 */}
+                  {/* 文章推薦 */}
                   <PostRecommend {...props} />
                 </div>
               )}
             </article>
 
-            {/* 评论区 */}
+            {/* 評論區 */}
             {fullWidth ? null : (
               <div className={`${commentEnable && post ? '' : 'hidden'}`}>
                 <hr className='my-4 border-dashed' />
-                {/* 评论区上方广告 */}
+                {/* 評論區上方廣告 */}
                 <div className='py-2'>
                   <AdSlot />
                 </div>
-                {/* 评论互动 */}
+                {/* 評論互動 */}
                 <div className='duration-200 overflow-x-auto px-5'>
                   <div className='text-2xl dark:text-white'>
                     <i className='fas fa-comment mr-1' />
@@ -365,7 +365,7 @@ const Layout404 = props => {
   const { onLoading, fullWidth } = useGlobal()
   return (
     <>
-      {/* 主区块 */}
+      {/* 主區塊 */}
       <main
         id='wrapper-outer'
         className={`flex-grow ${fullWidth ? '' : 'max-w-4xl'} w-screen mx-auto px-5`}>
@@ -382,28 +382,28 @@ const Layout404 = props => {
             unmount={false}>
             {/* 404卡牌 */}
             <div className='error-content flex flex-col md:flex-row w-full mt-12 h-[30rem] md:h-96 justify-center items-center bg-white dark:bg-[#1B1C20] border dark:border-gray-800 rounded-3xl'>
-              {/* 左侧动图 */}
+              {/* 左側動圖 */}
               <LazyImage
                 className='error-img h-60 md:h-full p-4'
                 src={
                   'https://bu.dusays.com/2023/03/03/6401a7906aa4a.gif'
                 }></LazyImage>
 
-              {/* 右侧文字 */}
+              {/* 右側文字 */}
               <div className='error-info flex-1 flex flex-col justify-center items-center space-y-4'>
                 <h1 className='error-title font-extrabold md:text-9xl text-7xl dark:text-white'>
                   404
                 </h1>
-                <div className='dark:text-white'>请尝试站内搜索寻找文章</div>
+                <div className='dark:text-white'>請嘗試站內搜索尋找文章</div>
                 <Link href='/'>
                   <button className='bg-blue-500 py-2 px-4 text-white shadow rounded-lg hover:bg-blue-600 hover:shadow-md duration-200 transition-all'>
-                    回到主页
+                    回到主頁
                   </button>
                 </Link>
               </div>
             </div>
 
-            {/* 404页面底部显示最新文章 */}
+            {/* 404頁面底部顯示最新文章 */}
             <div className='mt-12'>
               <LatestPostsGroup {...props} />
             </div>
@@ -415,7 +415,7 @@ const Layout404 = props => {
 }
 
 /**
- * 分类列表
+ * 分類列表
  * @param {*} props
  * @returns
  */
@@ -457,7 +457,7 @@ const LayoutCategoryIndex = props => {
 }
 
 /**
- * 标签列表
+ * 標簽列表
  * @param {*} props
  * @returns
  */
