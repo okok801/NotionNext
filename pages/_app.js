@@ -1,6 +1,7 @@
 // import '@/styles/animate.css' // @see https://animate.style/
 import '@/styles/globals.css'
 import '@/styles/utility-patterns.css'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 // core styles shared by all of react-notion-x (required)
 import '@/styles/notion.css' //  重写部分notion样式
@@ -68,6 +69,7 @@ const MyApp = ({ Component, pageProps }) => {
       ) : (
         content
       )}
+      <SpeedInsights />
     </>
   )
 }
